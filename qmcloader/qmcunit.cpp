@@ -461,7 +461,7 @@ bool QmcUnit::readBitArray(QBitArray &bitArray, QDataStream &stream)
     if (!buf)
         return false;
     if (!readData((char *)buf, len * sizeof(quint32), stream)) {
-        delete buf;
+        delete [] buf;
         return false;
     }
 
@@ -473,7 +473,7 @@ bool QmcUnit::readBitArray(QBitArray &bitArray, QDataStream &stream)
         if ((*p >> (i % 32)) & 1)
             bitArray.setBit(i);
     }
-    delete buf;
+    delete [] buf;
     return true;
 }
 
